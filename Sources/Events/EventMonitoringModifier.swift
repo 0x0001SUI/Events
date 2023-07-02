@@ -17,7 +17,7 @@ fileprivate struct EventMonitoringModifier: ViewModifier {
     
     // MARK: ViewModel
 
-    @ObservedObject private var observer = EventObserver()
+    @StateObject private var observer = EventObserver()
     
     // MARK: Initializer
 
