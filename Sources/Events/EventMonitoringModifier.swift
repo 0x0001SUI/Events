@@ -12,7 +12,7 @@ import SwiftUI
 
 // MARK: - EventMonitoringModifier
 
-@available(macOS 10.15, *)
+@available(macOS 11, *)
 fileprivate struct EventMonitoringModifier: ViewModifier {
     
     // MARK: ViewModel
@@ -58,7 +58,7 @@ fileprivate extension EventMonitoringModifier {
 // MARK: - View + EventMonitoringModifier
 
 
-@available(macOS 10.15, *)
+@available(macOS 11, *)
 public extension View {
     func onEvent(_ type: NSEvent.EventTypeMask, perform action: @escaping (NSEvent) -> NSEvent?) -> some View {
         modifier(EventMonitoringModifier(type: type, action: action))
