@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  HostingWindowFinder.swift
 //  
 //
 //  Created by Dima Koskin on 22.09.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private struct HostingWindowFinder: NSViewRepresentable {
+struct HostingWindowFinder: NSViewRepresentable {
     var callback: (NSWindow?) -> Void
 
     func makeNSView(context: Self.Context) -> NSView {

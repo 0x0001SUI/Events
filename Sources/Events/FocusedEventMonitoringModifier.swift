@@ -18,6 +18,7 @@ fileprivate struct FocusedEventMonitoringModifier: ViewModifier {
     // MARK: States
     
     @FocusState private var isFocused: Bool
+    @StateObject private var windowObserver = WindowObserver()
     
     // MARK: Initializer
 
@@ -35,7 +36,7 @@ fileprivate struct FocusedEventMonitoringModifier: ViewModifier {
     // MARK: Actions
 
     private func eventAction(_ event: NSEvent) -> NSEvent? {
-        guard isFocused else { return event }
+        guard windowObserver.isKeyWindow, isFocused else { return event }
         return action(event)
     }
 }
