@@ -30,6 +30,7 @@ fileprivate struct FocusedEventMonitoringModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .focused($isFocused)
+            .background { HostingWindowFinder { windowObserver.window = $0 } }
             .onEvent(type, perform: eventAction)
     }
     
