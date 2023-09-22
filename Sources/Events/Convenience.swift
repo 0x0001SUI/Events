@@ -12,13 +12,10 @@ import SwiftUI
 
 @available(macOS 10.15, *)
 public extension View {
-    func onKeyDown(_ keyCode: EventKeyCode, perform action: @escaping () -> Void) -> some View {
+    func onKeyDown(_ keyCode: EventKeyCode, perform action: @escaping (NSEvent) -> NSEvent?) -> some View {
         self.onEvent(.keyDown) { event in
             if EventKeyCode(rawValue: event.keyCode) == keyCode {
-                DispatchQueue.main.async {
-                    action()
-                }
-                return nil
+                return action(event)
             }
             
             return event
@@ -29,13 +26,10 @@ public extension View {
 
 @available(macOS 12.0, *)
 public extension View {
-    func onFocusedKeyDown(_ keyCode: EventKeyCode, perform action: @escaping () -> Void) -> some View {
+    func onFocusedKeyDown(_ keyCode: EventKeyCode, perform action: @escaping (NSEvent) -> NSEvent?) -> some View {
         self.onFocusedEvent(.keyDown) { event in
             if EventKeyCode(rawValue: event.keyCode) == keyCode {
-                DispatchQueue.main.async {
-                    action()
-                }
-                return nil
+                return action(event)
             }
             
             return event
