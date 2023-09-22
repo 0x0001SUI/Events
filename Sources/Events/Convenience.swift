@@ -15,7 +15,10 @@ public extension View {
     func onKeyDown(_ keyCode: EventKeyCode, perform action: @escaping () -> Void) -> some View {
         self.onEvent(.keyDown) { event in
             if EventKeyCode(rawValue: event.keyCode) == keyCode {
-                action()
+                DispatchQueue.main.async {
+                    action()
+                }
+                return nil
             }
             
             return event
@@ -29,7 +32,10 @@ public extension View {
     func onFocusedKeyDown(_ keyCode: EventKeyCode, perform action: @escaping () -> Void) -> some View {
         self.onFocusedEvent(.keyDown) { event in
             if EventKeyCode(rawValue: event.keyCode) == keyCode {
-                action()
+                DispatchQueue.main.async {
+                    action()
+                }
+                return nil
             }
             
             return event
